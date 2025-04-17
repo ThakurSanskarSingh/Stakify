@@ -1,0 +1,162 @@
+yield
+await staking.userInfo("0x5FC8d32690cc91D4c39d9d3abcBD16989F875707")
+const staking = await StakingWithEmissions.attach("0x5FC8d32690cc91D4c39d9d3abcBD16989F875707");
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmissions");
+ await staking.userInfo("0x5FC8d32690cc91D4c39d9d3abcBD16989F875707")
+console.log("Last Update:", finalUserInfo.lastUpda
+console.log("Reward Debt:", ethers.formatEther(finalUserInfo.rewardDebt), "SANSU");
+console.log("Staked Amount:", ethers.formatEther(finalUserInfo.stakedAmount), "ETH");
+const finalUserInfo = await staking.userInfo(signer.address);
+console.log("Claim transaction completed");
+await claimTx.wait();
+const claimTx = await staking.claimEmissions();
+console.log("Pending Rewards:", ethers.formatEther(rewardsAfterWait), "SANSU");
+console.log("Pending Rewards:", ethers.formatEther
+const claimTx = await staking.claimEmissions();
+console.log("Pending Rewards:", ethers.formatEther
+const rewardsAfterWait = await staking.getRewards(signer.address);
+console.log("\nChecking rewards after waiting:");
+await new Promise(resolve => setTimeout(resolve, 10000));
+console.log("\nWaiting 10 seconds for rewards to accumulate...");
+console.log("Pending Rewards:", ethers.formatEther
+const rewardsAfterStake = await staking.getRewards
+console.log("Last Update:", userInfoAfterStake.lastUpdate.toString());
+console.log("Reward Debt:", ethers.formatEther(userInfoAfterStake.rewardDebt), "SANSU");
+console.log("Staked Amount:", ethers.formatEther(userInfoAfterStake.stakedAmount), "ETH");
+const userInfoAfterStake = await staking.userInfo(signer.address);
+await stakeTx.wait();
+const stakeTx = await staking.stake(ethers.parseEther("10"), { value: ethers.parseEther("10") });
+const [signer] = await ethers.getSigners();
+const staking = await StakingWithEmissions.attach("0x5FC8d32690cc91D4c39d9d3abcBD16989F875707");
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmissions");
+const StakingWithEmissions = await ethers.getContract
+console.log("Last Update:", finalUserInfo.lastUpdate.toString());
+console.log("Reward Debt:", ethers.formatEther(finalUserInfo.rewardDebt), "SANSU");
+console.log("Staked Amount:", ethers.formatEther(finalUserInfo.stakedAmount), "ETH");
+const finalUserInfo = await staking.userInfo(signer.address);
+console.log("Claim transaction completed");
+await claimTx.wait();
+const claimTx = await staking.claimEmissions();
+console.log("Pending Rewards:", ethers.formatEther(rewardsAfterWait), "SANSU");
+const rewardsAfterWait = await staking.getRewards(signer.address);
+await new Promise(resolve => setTimeout(resolve, 10000));
+console.log("Pending Rewards:", ethers.formatEther(rewardsAfterStake), "SANSU");
+const rewardsAfterStake = await staking.getRewards(signer.address);
+console.log("Last Update:", userInfoAfterStake.lastUpdate.toString());
+console.log("Reward Debt:", ethers.formatEther(userInfoAfterStake.rewardDebt), "SANSU");
+console.log("Staked Amount:", ethers.formatEther(userInfoAfterStake.stakedAmount), "ETH");
+const userInfoAfterStake = await staking.userInfo(signer.address);
+await stakeTx.wait();
+const stakeTx = await staking.stake(ethers.parseEther("0.1"), { value: ethers.parseEther("0.1") });
+const [signer] = await ethers.getSigners();
+const staking = await StakingWithEmissions.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3");
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmissions");
+const staking1 = await StakingWithEmissions.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3");
+const staking = await StakingWithEmissions.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3");
+const staking = await StakingWithEmissions.attach("NEW_STAKING_ADDRESS");
+const StakingWithEmissions = await ethers.getContract
+console.log("Pending Rewards:", ethers.formatEther(rewards), "SANSU");
+const rewards = await staking1.getRewards(signer.address);
+console.log("\nChecking rewards:");
+console.log("Last Update:", userInfoAfterStake.lastUpdate.toString());
+console.log("Reward Debt:", ethers.formatEther(userInfoAfterStake.rewardDebt), "SANSU");
+console.log("Staked Amount:", ethers.formatEther(userInfoAfterStake.stakedAmount), "ETH");
+const userInfoAfterStake = await staking1.userInfo(signer.address);
+console.log("Stake transaction completed");
+await stakeTx1.wait();
+const stakeTx1 = await staking1.stake(ethers.parseEther("0.1"), { value: ethers.parseEther("0.1") });
+const stakeTx = await staking1.stake(ethers.parseEther("0.1"), { value: ethers.parseEther("0.1") });
+const stakeTx = await staking.connect(signer).stakther("0.1") });
+const stakeTx = await staking.stake(ethers.parseEther("0.1"), { value: ethers.parseEther("0.1") });
+console.log("\nStaking 0.1 ETH...");
+console.log("Last Update:", initialUserInfo.lastUpdate.toString());
+console.log("Reward Debt:", ethers.formatEther(initialUserInfo.rewardDebt), "SANSU");
+console.log("Staked Amount:", ethers.formatEther(initialUserInfo.stakedAmount), "ETH");
+const initialUserInfo = await staking1.userInfo(signer.address);
+const [signer] = await ethers.getSigners();
+const staking1 = await StakingWithEmissions.attach("0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9");
+const staking = await StakingWithEmissions.attach("0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9");
+const staking = await StakingWithEmissions.attach("YOUR_NEW_CONTRACT_ADDRESS");
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmissions");
+const rewards1 = await staking.getRewards(signer.address);
+const rewards = await staking.getRewards(signer.address);
+console.log("\nChecking rewards:");
+console.log("Reward Debt:", ethers.formatEther(userInfoAfterStake1.rewardDebt), "SANSU");
+console.log("Staked Amount:", ethers.formatEther(userInfoAfterStake1.stakedAmount), "ETH");
+const userInfoAfterStake1 = await staking.userInfo(signer.address);
+const userInfoAfterStake = await staking.userInfo(signer.address);
+console.log("\nUser Info after staking:");
+console.log("Stake transaction completed");
+await stakeTx.wait();
+const stakeTx = await staking.stake(ethers.parseEther("0.1"), { value: ethers.parseEther("0.1") });
+ console.log("Staked Amount:", ethers.formatEther(userInfoAfterStake[0]), "ETH");
+ const userInfoAfterStake = await staking.userInfo
+console.log("\nStaking 0.1 ETH...");
+ console.log("Last Update:", initialUserInfo[2].toString());
+ console.log("Reward Debt:", ethers.formatEther(initialUserInfo[1]), "SANSU");
+ console.log("Staked Amount:", ethers.formatEther(initialUserInfo[0]), "ETH");
+const initialUserInfo = await staking.userInfo(signer.address);
+} 
+    console.log("Reward Debt:", ethers.forma    console.log("Last Update:", initialUserInfo[2].toString());
+TH");
+    const initialUserInfo = await staking.us    console.log("Staked Amount:", ethers.formatEther(initialUserInfo[0]), "E
+try {
+console.log("\nInitial User Info:");
+console.log("Contract owner:", await staking.owner());
+console.log("Contract address:", await staking.get
+const [signer] = await ethers.getSigners();
+const staking = await StakingWithEmissions.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3");
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmissions");
+.exit
+console.log("Contract address:", await staking.getconsole.log("Contract owner:", await staking.owner());
+const initialUserInfo = await staking.userInfo(signer.address);
+console.log("Initial User Info:");
+const [signer] = await ethers.getSigners();
+const staking = await StakingWithEmissions.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3");
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmissions");
+const rewards console.log("Pending Rewards:", ethers.formatEther(rewards), "SANSU");
+console.log("\nChecking rewards:");
+console.log("Last Update:", userInfoAfterStake[2].toString());
+console.log("Reward Debt:", ethers.formatEther(userInfoAfterStake[1]), "SANSU");
+console.log("Staked Amount:", ethers.formatEther(userInfoAfterStake[0]), "ETH");
+const userInfoAfterStake = await staking.userInfo(signer.address);
+console.log("\nUser Info after staking:");
+console.log("Stake transaction completed");
+await stakeTx.wait();
+const stakeTx = await staking.stake(ethers.parseEther("0.1"), { value: ethers.parseEther("0.1") });
+console.log("\nStaking 0.1 ETH...");
+console.log("Last Update:", initialUserInfo[2].toS
+console.log("Reward Debt:", ethers.formatEther(initialUserInfo[1]), "SANSU");
+console.log("Staked Amount:", ethers.formatEther(initialUserInfo[0]), "ETH");
+const initialUserInfo = await staking.userInfo(signer.address);
+console.log("Initial User Info:");
+const [signer] = await ethers.getSigners();
+const staking = await StakingWithEmissions.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3");
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmissions")
+const StakingWithEmissions = await ethers.getContractFactory
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmissions")
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmmissions")
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmissions")
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmissions)
+const StakingWithEmissions = await ethers.getContract
+console.log("Updated Staked Amount:", ethers.formatEther(updatedUserInfo[0]), "ETH");
+const updatedUserInfo = await staking.userInfo(signer.address);
+await stakeTx.wait();
+const stakeTx = await staking.stake(ethers.parseEther("0.1"), { value: ethers.parseEther("0.1") });
+console.log("Last Update:", userInfo[2].toString());
+console.log("Reward Debt:", ethers.formatEther(userInfo[1]), "SANSU");
+console.log("Staked Amount:", ethers.formatEther(userInfo[0]), "ETH");
+const userInfo = await staking.userInfo(signer.address);
+const [signer] = await ethers.getSigners();
+const staking = await StakingWithEmissions.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3");
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmissions");
+console.log("Total Stake:", ethers.formatEther(totalStake), "ETH");
+const totalStake = await staking.totalStake();
+const rewards = await staking.getRewards(signer.address);
+console.log("Pending Rewards:", ethers.formatEther(rewards), "SANSU");
+console.log("Last Update:", userInfo[2].toString());
+console.log("Staked Amount:", ethers.formatconsole.log("Reward Debt:", ethers.formatEther(userInfo[1]), "SANSU");
+const userInfo = await staking.userInfo(signer.address);
+const [signer] = await ethers.getSigners();
+const staking = await StakingWithEmissions.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3");
+const StakingWithEmissions = await ethers.getContractFactory("StakingWithEmissions");
