@@ -1,54 +1,77 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### ✅ `README.md`
 
-Currently, two official plugins are available:
+```markdown
+# 🌾 Sansu Staking dApp
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A clean and responsive Ethereum staking dashboard built with **React**, **TypeScript**, and **Wagmi v2**, allowing users to stake ETH and earn **SANSU** tokens as rewards at a live rate.
 
-## Expanding the ESLint configuration
+![Sansu Staking Screenshot](./preview.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## ✨ Features
+
+- 🔐 Wallet connection (MetaMask, WalletConnect, etc.)
+- 🪙 ETH staking system
+- ⚡ Real-time reward rate: `1 SANSU / sec per 1 ETH`
+- 📈 Live balance, staked amount, and reward claim interface
+- 🌒 Full dark mode UI with Tailwind CSS
+- 🔌 Built using **wagmi v2**, **ethers.js**, and **React Query**
+
+---
+
+## 🧠 Tech Stack
+
+- **React** + **TypeScript**
+- **Tailwind CSS** – for styling
+- **wagmi v2** – wallet integration
+- **viem** – interaction with contracts
+- **React Query** – for async data management
+- **Hardhat** – for contract development/testing
+
+---
+
+## 🛠 Setup Instructions
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/sansu-staking.git
+cd sansu-staking
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install
 ```
+
+### 3. Configure the network
+
+Update your `wagmi` config and contracts in:
+
+- `src/config.ts`
+- `src/abis/` folder for ABIs
+- Set the right contract addresses in the config file
+
+### 4. Start the app
+
+```bash
+npm run dev
+```
+
+App will be available at: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 📷 Preview
+
+
+```markdown
+![Sansu Staking Preview](./preview.png)
+```
+
+
+---
+
