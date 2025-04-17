@@ -1,12 +1,15 @@
 
 ### ✅ `README.md`
 
-```markdown
+
+
+
+
 # 🌾 Sansu Staking dApp
 
 A clean and responsive Ethereum staking dashboard built with **React**, **TypeScript**, and **Wagmi v2**, allowing users to stake ETH and earn **SANSU** tokens as rewards at a live rate.
 
-![Sansu Staking Screenshot](./preview.png)
+<img src="./preview.png" alt="Sansu Staking UI" width="800" />
 
 ---
 
@@ -68,9 +71,7 @@ App will be available at: [http://localhost:5173](http://localhost:5173)
 ## 📷 Preview
 
 
-```markdown
-![Sansu Staking Preview](./preview.png)
-```
+<img src="./preview.png" alt="Sansu Staking UI" width="800" />
 
 
 ---
