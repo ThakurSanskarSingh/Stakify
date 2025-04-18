@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "env": {
+    "VITE_STAKING_ADDRESS": "@vite_staking_address",
+    "VITE_SANSU_COIN_ADDRESS": "@vite_sansu_coin_address",
+    "VITE_SEPOLIA_RPC_URL": "@vite_sepolia_rpc_url"
+  }
+} 

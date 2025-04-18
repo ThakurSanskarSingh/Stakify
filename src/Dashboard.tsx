@@ -8,8 +8,8 @@ import { TrendingUp, Award, ArrowDown, RefreshCw } from 'lucide-react';
 import { stakingAbi, SansuAbi } from './abi';
 import { config } from './config';
 
-const STAKING_ADDRESS = '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9';
-const SANSU_TOKEN_ADDRESS = '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9';
+const STAKING_ADDRESS = '0x0b70aD4f6dE3b1EdE3C1F12a5FE1b30A36ceB1fc';
+const SANSU_TOKEN_ADDRESS = '0xcF32156d3C2B9157A9A1De93Fb877Aa018e762EE';
 
 export function Dashboard() {
   const { address, isConnected, chainId } = useAccount();
@@ -23,7 +23,7 @@ export function Dashboard() {
   const [totalStaked, setTotalStaked] = useState(0n);
  
 
-  // Get user staking info
+
   const { data: userInfoData, refetch: refetchUserInfo } = useReadContract({
     address: STAKING_ADDRESS,
     abi: stakingAbi,
@@ -34,7 +34,7 @@ export function Dashboard() {
     },
   });
 
-  // Get total staked (optional, if your contract has this function)
+  
   const { data: totalStakedData } = useReadContract({
     address: STAKING_ADDRESS,
     abi: stakingAbi,
@@ -44,7 +44,7 @@ export function Dashboard() {
     },
   });
 
-  // Function to manually fetch data
+
   const fetchData = () => {
     if (isConnected && address) {
       console.log("Manually fetching data...");
@@ -60,7 +60,7 @@ export function Dashboard() {
     }
   };
 
-  // Direct access to contract data
+
   useEffect(() => {
     if (isConnected && address) {
       if (userInfoData) {
@@ -194,7 +194,7 @@ export function Dashboard() {
       setSuccessMessage(`Successfully claimed ${rewardAmount} SANSU`);
       toast.success(`Successfully claimed ${rewardAmount} SANSU`, { id: 'claim-tx' });
       
-      // Wait a moment then fetch the updated data
+     
       setTimeout(fetchData, 2000);
     } catch (err: any) {
       console.error('Claim error:', err);

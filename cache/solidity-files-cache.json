@@ -190,42 +190,6 @@
         "IERC20"
       ]
     },
-    "C:\\Users\\sansk\\staking-fullStack\\contracts\\staking.sol": {
-      "lastModificationDate": 1744353889272,
-      "contentHash": "2ab4076e24991a3db7ac59eb138a0d53",
-      "sourceName": "contracts/staking.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Staking"
-      ]
-    },
     "C:\\Users\\sansk\\staking-fullStack\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
       "lastModificationDate": 1744438049692,
       "contentHash": "d3c790edc9ccf808a17c5a6cd13614fd",
@@ -303,8 +267,8 @@
       ]
     },
     "C:\\Users\\sansk\\staking-fullStack\\contracts\\StakingWithEmissions.sol": {
-      "lastModificationDate": 1744621861483,
-      "contentHash": "c567d757bb5bace867568309e6288038",
+      "lastModificationDate": 1744917510012,
+      "contentHash": "1f4e13f46cd3377bf9fdedd8b94eb90f",
       "sourceName": "contracts/StakingWithEmissions.sol",
       "solcConfig": {
         "version": "0.8.20",
