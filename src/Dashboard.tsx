@@ -19,7 +19,7 @@ export function Dashboard() {
   const [loadingAction, setLoadingAction] = useState('');
   const [stakedAmount, setStakedAmount] = useState(0n);
   const [pendingRewards, setPendingRewards] = useState(0n);
-  const [totalStaked, setTotalStaked] = useState<bigint>(0n);
+  const [totalStaked, setTotalStaked] = useState(0n);
  
 
 
@@ -65,7 +65,7 @@ export function Dashboard() {
       if (userInfoData) {
         console.log("Direct userInfo result:", userInfoData);
         
-        // Extract staked amount and pending rewards from userInfo
+        
         if (Array.isArray(userInfoData) && userInfoData.length > 1) {
           const staked = userInfoData[0];
           const rewards = userInfoData[1];
@@ -84,22 +84,33 @@ export function Dashboard() {
       
       if (totalStakedData && typeof totalStakedData === 'bigint') {
         setTotalStaked(totalStakedData);
+        console.log("Updated total staked:", formatEther(totalStakedData));
       }
     }
   }, [userInfoData, totalStakedData, isConnected, address]);
 
-  // Set up periodic data refresh
+  
   useEffect(() => {
     if (!isConnected || !address) return;
     
-    // Initial fetch
+   
     fetchData();
     
-    // Set up a refresh interval
+   
     const intervalId = setInterval(fetchData, 30000);
     
     return () => clearInterval(intervalId);
   }, [isConnected, address]);
+
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage('');
+      }, 3000); // 3 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
 
   const handleStake = async () => {
     if (!amount) {
@@ -146,12 +157,17 @@ export function Dashboard() {
       toast.success(`Successfully staked ${amount} ETH`, { id: 'stake-tx' });
       setAmount('');
       
-      // Wait a moment then fetch the updated data
       setTimeout(fetchData, 2000);
     } catch (err: any) {
       console.error('Staking error:', err);
-      setError(err.message || 'Failed to stake ETH');
-      toast.error(err.message || 'Failed to stake ETH', { id: 'stake-tx' });
+      // Extract relevant error message
+      const errorMessage = err.message?.includes('insufficient funds') 
+        ? 'Insufficient ETH balance'
+        : err.message?.includes('user rejected') 
+          ? 'Transaction rejected'
+          : 'Failed to stake ETH';
+      setError(errorMessage);
+      toast.error(errorMessage, { id: 'stake-tx' });
     } finally {
       setIsLoading(false);
       setLoadingAction('');
@@ -193,12 +209,15 @@ export function Dashboard() {
       setSuccessMessage(`Successfully claimed ${rewardAmount} SANSU`);
       toast.success(`Successfully claimed ${rewardAmount} SANSU`, { id: 'claim-tx' });
       
-     
       setTimeout(fetchData, 2000);
     } catch (err: any) {
       console.error('Claim error:', err);
-      setError(err.message || 'Failed to claim rewards');
-      toast.error(err.message || 'Failed to claim rewards', { id: 'claim-tx' });
+      // Extract relevant error message
+      const errorMessage = err.message?.includes('user rejected') 
+        ? 'Transaction rejected'
+        : 'Failed to claim rewards';
+      setError(errorMessage);
+      toast.error(errorMessage, { id: 'claim-tx' });
     } finally {
       setIsLoading(false);
       setLoadingAction('');
@@ -247,19 +266,22 @@ export function Dashboard() {
       setSuccessMessage(`Successfully unstaked ${amountToUnstake} ETH`);
       toast.success(`Successfully unstaked ${amountToUnstake} ETH`, { id: 'unstake-tx' });
       
-      // Wait a moment then fetch the updated data
       setTimeout(fetchData, 2000);
     } catch (err: any) {
       console.error('Unstake error:', err);
-      setError(err.message || 'Failed to unstake ETH');
-      toast.error(err.message || 'Failed to unstake ETH', { id: 'unstake-tx' });
+      // Extract relevant error message
+      const errorMessage = err.message?.includes('user rejected') 
+        ? 'Transaction rejected'
+        : 'Failed to unstake ETH';
+      setError(errorMessage);
+      toast.error(errorMessage, { id: 'unstake-tx' });
     } finally {
       setIsLoading(false);
       setLoadingAction('');
     }
   };
 
-  // Format bigint to readable string with max 6 decimals
+
   const formatCrypto = (value: bigint) => {
     if (!value) return '0';
     return parseFloat(formatEther(value)).toFixed(6);
@@ -318,7 +340,7 @@ export function Dashboard() {
         )}
 
         <div className="grid md:grid-cols-2 gap-6 mb-6">
-          {/* Overview Stats */}
+         
           <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 shadow-lg">
             <h2 className="text-xl font-bold mb-4 flex items-center">
               <TrendingUp className="mr-2 text-yellow-500" size={20} />
@@ -384,7 +406,7 @@ export function Dashboard() {
                 <button 
                   className="absolute right-2 top-2 bg-gray-600 text-xs px-2 py-1 rounded text-white hover:bg-gray-500"
                   onClick={() => {
-                    // Check if user has ETH and set max (with a small buffer for gas)
+                   
                     setAmount('1');
                   }}
                 >
@@ -470,7 +492,7 @@ export function Dashboard() {
           </div>
         </div>
 
-        {/* Rewards Info */}
+        
         <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 shadow-lg mb-6">
           <h2 className="text-xl font-bold mb-4 flex items-center">
             <Award className="mr-2 text-yellow-500" size={20} />
