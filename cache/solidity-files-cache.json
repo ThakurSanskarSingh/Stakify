@@ -267,8 +267,8 @@
       ]
     },
     "C:\\Users\\sansk\\staking-fullStack\\contracts\\StakingWithEmissions.sol": {
-      "lastModificationDate": 1744917510012,
-      "contentHash": "1f4e13f46cd3377bf9fdedd8b94eb90f",
+      "lastModificationDate": 1745013426068,
+      "contentHash": "85dbadb45f155f4ceff37cbbf540e4d6",
       "sourceName": "contracts/StakingWithEmissions.sol",
       "solcConfig": {
         "version": "0.8.20",

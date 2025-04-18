@@ -9,11 +9,12 @@ interface ISansuCoin {
 
 contract StakingWithEmissions {
     mapping(address => uint) stakes;
-    uint public totalStake;
+  
     uint256 public constant REWARD_PER_SEC_PER_ETH = 1e18;
     
     ISansuCoin public sansuCoin;
 
+    uint256 public totalStakedBalance;
 
     struct UserInfo {
         uint256 stakedAmount;
@@ -55,7 +56,7 @@ contract StakingWithEmissions {
         _updateRewards(msg.sender);
 
         userInfo[msg.sender].stakedAmount += _amount;
-        totalStake += _amount;
+        totalStakedBalance += _amount;
     }
 
     function unstake(uint _amount) public payable {
@@ -65,7 +66,8 @@ contract StakingWithEmissions {
 
         _updateRewards(msg.sender);
         user.stakedAmount -= _amount;
-        totalStake -= _amount;
+       
+        totalStakedBalance -= _amount;
 
         payable(msg.sender).transfer(_amount);
     }
@@ -99,4 +101,7 @@ contract StakingWithEmissions {
         return pendingRewards + user.rewardDebt;
     }
 
+    function totalStaked() public view returns (uint256) {
+        return totalStakedBalance;
+    }
 }

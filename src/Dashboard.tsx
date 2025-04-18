@@ -5,11 +5,10 @@ import { useState, useEffect } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 import { TrendingUp, Award, ArrowDown, RefreshCw } from 'lucide-react';
 
-import { stakingAbi, SansuAbi } from './abi';
+import { stakingAbi } from './abi';
 import { config } from './config';
 
-const STAKING_ADDRESS = '0x0b70aD4f6dE3b1EdE3C1F12a5FE1b30A36ceB1fc';
-const SANSU_TOKEN_ADDRESS = '0xcF32156d3C2B9157A9A1De93Fb877Aa018e762EE';
+const STAKING_ADDRESS = import.meta.env.VITE_STAKING_ADDRESS;
 
 export function Dashboard() {
   const { address, isConnected, chainId } = useAccount();
@@ -20,7 +19,7 @@ export function Dashboard() {
   const [loadingAction, setLoadingAction] = useState('');
   const [stakedAmount, setStakedAmount] = useState(0n);
   const [pendingRewards, setPendingRewards] = useState(0n);
-  const [totalStaked, setTotalStaked] = useState(0n);
+  const [totalStaked, setTotalStaked] = useState<bigint>(0n);
  
 
 
@@ -329,7 +328,7 @@ export function Dashboard() {
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-gray-700/50 rounded-lg p-4 border border-gray-600">
                 <div className="text-gray-400 text-sm mb-1">Total Staked</div>
-                <div className="text-xl font-bold text-white">{formatCrypto(stakedAmount)} ETH</div>
+                <div className="text-xl font-bold text-white">{formatCrypto(totalStaked)} ETH</div>
               </div>
               
               <div className="bg-gray-700/50 rounded-lg p-4 border border-gray-600">
