@@ -10,8 +10,8 @@
     }
   ],
   "env": {
-    "VITE_STAKING_ADDRESS": "@vite_staking_address",
-    "VITE_SANSU_COIN_ADDRESS": "@vite_sansu_coin_address",
-    "VITE_SEPOLIA_RPC_URL": "@vite_sepolia_rpc_url"
+    "VITE_STAKING_ADDRESS": "vite_staking_address",
+    "VITE_SANSU_COIN_ADDRESS": "vite_sansu_coin_address",
+    "VITE_SEPOLIA_RPC_URL": "vite_sepolia_rpc_url"
   }
 } 
