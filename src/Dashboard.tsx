@@ -65,7 +65,7 @@ export function Dashboard() {
       if (userInfoData) {
         console.log("Direct userInfo result:", userInfoData);
         
-        // Extract staked amount and pending rewards from userInfo
+        
         if (Array.isArray(userInfoData) && userInfoData.length > 1) {
           const staked = userInfoData[0];
           const rewards = userInfoData[1];
@@ -90,7 +90,7 @@ export function Dashboard() {
         }
       }
     }
-  }, [userInfoData, totalStakedData, isConnected, address]);
+  }, [userInfoData, totalStakedData, isConnected, address,fetchData]);
 
   
   useEffect(() => {
