@@ -350,7 +350,7 @@ export function Dashboard() {
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-gray-700/50 rounded-lg p-4 border border-gray-600">
                 <div className="text-gray-400 text-sm mb-1">Total Staked</div>
-                <div className="text-xl font-bold text-white">{formatCrypto(totalStaked as bigint)} ETH</div>
+                <div className="text-xl font-bold text-white">{formatCrypto(totalStaked)} ETH</div>
               </div>
               
               <div className="bg-gray-700/50 rounded-lg p-4 border border-gray-600">
