@@ -65,7 +65,7 @@ export function Dashboard() {
       if (userInfoData) {
         console.log("Direct userInfo result:", userInfoData);
         
-        
+        // Extract staked amount and pending rewards from userInfo
         if (Array.isArray(userInfoData) && userInfoData.length > 1) {
           const staked = userInfoData[0];
           const rewards = userInfoData[1];
@@ -82,9 +82,12 @@ export function Dashboard() {
         }
       }
       
-      if (totalStakedData && typeof totalStakedData === 'bigint') {
-        setTotalStaked(totalStakedData);
-        console.log("Updated total staked:", formatEther(totalStakedData));
+      if (totalStakedData) {
+        console.log("Total staked data:", totalStakedData);
+        if (typeof totalStakedData === 'bigint') {
+          setTotalStaked(totalStakedData);
+          console.log("Updated total staked:", formatEther(totalStakedData));
+        }
       }
     }
   }, [userInfoData, totalStakedData, isConnected, address]);
