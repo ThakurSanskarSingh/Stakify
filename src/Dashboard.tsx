@@ -49,7 +49,7 @@ export function Dashboard() {
     address: STAKING_ADDRESS,
     abi: stakingAbi,
     functionName: 'getRewards',
-    args: [address],
+    
     query: {
       enabled: !!address && isConnected,
       refetchInterval: 3000, // every 3 sec
