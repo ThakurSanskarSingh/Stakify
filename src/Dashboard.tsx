@@ -67,12 +67,16 @@ export function Dashboard() {
         console.log("Refetched user info:", userInfoResult.data);
         
         if (userInfoResult.data) {
-          const [staked, rewards] = userInfoResult.data as [bigint, bigint];
+          const [staked] = userInfoResult.data as [bigint];
           console.log("Staked amount:", formatEther(staked));
-          console.log("Pending rewards:", formatEther(rewards));
+          
           
           setStakedAmount(staked);
-          setPendingRewards(rewards);
+         
+        }
+        if (typeof liveRewards === 'bigint') {
+          console.log("Live pending rewards:", formatEther(liveRewards));
+          setPendingRewards(liveRewards);
         }
         
         toast.success('Data refreshed', { id: 'refresh-data' });
