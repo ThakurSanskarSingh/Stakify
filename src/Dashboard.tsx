@@ -74,6 +74,7 @@ export function Dashboard() {
           setStakedAmount(staked);
          
         }
+        console.log("liveRewards raw data:", liveRewards);
         if (typeof liveRewards === 'bigint') {
           console.log("Live pending rewards:", formatEther(liveRewards));
           setPendingRewards(liveRewards);
