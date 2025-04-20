@@ -45,6 +45,17 @@ export function Dashboard() {
       enabled: isConnected,
     },
   });
+  const { data: liveRewards } = useReadContract({
+    address: STAKING_ADDRESS,
+    abi: stakingAbi,
+    functionName: 'getRewards',
+    args: [address],
+    query: {
+      enabled: !!address && isConnected,
+      refetchInterval: 3000, // every 3 sec
+    },
+  });
+  
 
 
   const fetchData = async () => {
@@ -81,17 +92,14 @@ export function Dashboard() {
         
         if (Array.isArray(userInfoData) && userInfoData.length > 1) {
           const staked = userInfoData[0];
-          const rewards = userInfoData[1];
+          // const rewards = userInfoData[1];
           
           if (typeof staked === 'bigint') {
             setStakedAmount(staked);
             console.log("Updated staked amount:", formatEther(staked));
           }
           
-          if (typeof rewards === 'bigint') {
-            setPendingRewards(rewards);
-            console.log("Updated pending rewards:", formatEther(rewards));
-          }
+         
         }
       }
       
@@ -103,8 +111,14 @@ export function Dashboard() {
         }
       }
     }
-  }, [userInfoData, totalStakedData, isConnected, address,fetchData]);
+  }, [userInfoData, totalStakedData, isConnected, address]);
 
+  useEffect(() => {
+    if (isConnected && address && typeof liveRewards === 'bigint') {
+      setPendingRewards(liveRewards);
+      console.log("Updated live pending rewards:", formatEther(liveRewards));
+    }
+  }, [isConnected, address, liveRewards]);
   
   useEffect(() => {
     if (!isConnected || !address) return;

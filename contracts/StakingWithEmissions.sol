@@ -96,7 +96,7 @@ contract StakingWithEmissions {
             return user.rewardDebt;
         }
 
-        // Calculate current pending rewards
+       
         uint256 pendingRewards = (user.stakedAmount * timeDiff * REWARD_PER_SEC_PER_ETH) / 1e18;
         return pendingRewards + user.rewardDebt;
     }
