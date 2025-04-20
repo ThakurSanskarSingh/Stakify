@@ -45,16 +45,16 @@ export function Dashboard() {
       enabled: isConnected,
     },
   });
-  const { data: liveRewards } = useReadContract({
-    address: STAKING_ADDRESS,
-    abi: stakingAbi,
-    functionName: 'getRewards',
+  // const { data: liveRewards } = useReadContract({
+  //   address: STAKING_ADDRESS,
+  //   abi: stakingAbi,
+  //   functionName: 'getRewards',
     
-    query: {
-      enabled: !!address && isConnected,
-      refetchInterval: 3000, // every 3 sec
-    },
-  });
+  //   query: {
+  //     enabled: !!address && isConnected,
+  //     refetchInterval: 3000, // every 3 sec
+  //   },
+  // });
   
 
 
@@ -67,17 +67,12 @@ export function Dashboard() {
         console.log("Refetched user info:", userInfoResult.data);
         
         if (userInfoResult.data) {
-          const [staked] = userInfoResult.data as [bigint];
+          const [staked, rewards] = userInfoResult.data as [bigint, bigint];
           console.log("Staked amount:", formatEther(staked));
-          
+          console.log("Pending rewards:", formatEther(rewards));
           
           setStakedAmount(staked);
-         
-        }
-        console.log("liveRewards raw data:", liveRewards);
-        if (typeof liveRewards === 'bigint') {
-          console.log("Live pending rewards:", formatEther(liveRewards));
-          setPendingRewards(liveRewards);
+          setPendingRewards(rewards);
         }
         
         toast.success('Data refreshed', { id: 'refresh-data' });
@@ -86,8 +81,7 @@ export function Dashboard() {
         toast.error('Failed to refresh data', { id: 'refresh-data' });
       }
     }
-  };
-
+  };   
 
   useEffect(() => {
     if (isConnected && address) {
@@ -97,13 +91,16 @@ export function Dashboard() {
         
         if (Array.isArray(userInfoData) && userInfoData.length > 1) {
           const staked = userInfoData[0];
-          // const rewards = userInfoData[1];
+          const rewards = userInfoData[1];
           
           if (typeof staked === 'bigint') {
             setStakedAmount(staked);
             console.log("Updated staked amount:", formatEther(staked));
           }
-          
+          if(typeof rewards === 'bigint'){
+            setPendingRewards(rewards);
+            console.log("Updated pending rewards:", formatEther(rewards));
+          }
          
         }
       }
@@ -118,12 +115,12 @@ export function Dashboard() {
     }
   }, [userInfoData, totalStakedData, isConnected, address]);
 
-  useEffect(() => {
-    if (isConnected && address && typeof liveRewards === 'bigint') {
-      setPendingRewards(liveRewards);
-      console.log("Updated live pending rewards:", formatEther(liveRewards));
-    }
-  }, [isConnected, address, liveRewards]);
+  // useEffect(() => {
+  //   if (isConnected && address && typeof liveRewards === 'bigint') {
+  //     setPendingRewards(liveRewards);
+  //     console.log("Updated live pending rewards:", formatEther(liveRewards));
+  //   }
+  // }, [isConnected, address, liveRewards]);
   
   useEffect(() => {
     if (!isConnected || !address) return;
