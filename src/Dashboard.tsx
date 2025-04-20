@@ -1,4 +1,4 @@
-import { useAccount, useReadContract } from 'wagmi';
+import { useAccount, useReadContract,useChainId , useSwitchChain } from 'wagmi';
 import { writeContract, waitForTransactionReceipt } from '@wagmi/core';
 import { parseEther, formatEther } from 'viem';
 import { useState, useEffect } from 'react';
@@ -7,6 +7,7 @@ import { TrendingUp, Award, ArrowDown, RefreshCw } from 'lucide-react';
 
 import { stakingAbi } from './abi';
 import { config } from './config';
+import { sepolia } from 'wagmi/chains';
 
 const STAKING_ADDRESS = import.meta.env.VITE_STAKING_ADDRESS;
 
@@ -20,8 +21,10 @@ export function Dashboard() {
   const [stakedAmount, setStakedAmount] = useState(0n);
   const [pendingRewards, setPendingRewards] = useState(0n);
   const [totalStaked, setTotalStaked] = useState<bigint>(0n);
- 
 
+  const { switchChain, isPending: isSwitchingChain } = useSwitchChain();
+  const currentChainId = useChainId();
+  const isConnectedToSepolia = currentChainId === sepolia.id;
 
   const { data: userInfoData, refetch: refetchUserInfo } = useReadContract({
     address: STAKING_ADDRESS,
@@ -44,14 +47,24 @@ export function Dashboard() {
   });
 
 
-  const fetchData = () => {
+  const fetchData = async () => {
     if (isConnected && address) {
       console.log("Manually fetching data...");
       toast.loading('Refreshing data...', { id: 'refresh-data' });
       try {
-        refetchUserInfo().then(() => {
-          toast.success('Data refreshed', { id: 'refresh-data' });
-        });
+        const userInfoResult = await refetchUserInfo();
+        console.log("Refetched user info:", userInfoResult.data);
+        
+        if (userInfoResult.data) {
+          const [staked, rewards] = userInfoResult.data as [bigint, bigint];
+          console.log("Staked amount:", formatEther(staked));
+          console.log("Pending rewards:", formatEther(rewards));
+          
+          setStakedAmount(staked);
+          setPendingRewards(rewards);
+        }
+        
+        toast.success('Data refreshed', { id: 'refresh-data' });
       } catch (err) {
         console.error("Error fetching data:", err);
         toast.error('Failed to refresh data', { id: 'refresh-data' });
@@ -300,7 +313,25 @@ export function Dashboard() {
       </div>
     );
   }
-  
+
+  if (!isConnectedToSepolia) {
+    return (
+      <div className="p-6 bg-gray-900 text-white min-h-screen">
+        <h1 className="text-3xl font-bold mb-4">Staking Dashboard</h1>
+        <div className="bg-yellow-900/30 border border-yellow-700 text-yellow-300 px-4 py-3 rounded mb-4">
+          <p className="mb-4">This dApp only works on Sepolia testnet.</p>
+          <button 
+            onClick={() => switchChain({ chainId: sepolia.id })} 
+            disabled={isSwitchingChain}
+            className="bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
+          >
+            {isSwitchingChain ? 'Switching...' : 'Switch to Sepolia'}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="p-6 bg-gray-900 text-white min-h-screen">
       <Toaster 
