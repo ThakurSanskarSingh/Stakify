@@ -20,7 +20,7 @@ export function Dashboard() {
   const [loadingAction, setLoadingAction] = useState('');
   const [stakedAmount, setStakedAmount] = useState(0n);
   const [pendingRewards, setPendingRewards] = useState(0n);
-  const [totalStaked, setTotalStaked] = useState<bigint>(0n);
+  // const [totalStaked, setTotalStaked] = useState<bigint>(0n);
 
   const { switchChain, isPending: isSwitchingChain } = useSwitchChain();
   const currentChainId = useChainId();
@@ -37,14 +37,14 @@ export function Dashboard() {
   });
 
   
-  const { data: totalStakedData } = useReadContract({
-    address: STAKING_ADDRESS,
-    abi: stakingAbi,
-    functionName: 'totalStaked',
-    query: {
-      enabled: isConnected,
-    },
-  });
+  // const { data: totalStakedData } = useReadContract({
+  //   address: STAKING_ADDRESS,
+  //   abi: stakingAbi,
+  //   functionName: 'totalStaked',
+  //   query: {
+  //     enabled: isConnected,
+  //   },
+  // });
   // const { data: liveRewards } = useReadContract({
   //   address: STAKING_ADDRESS,
   //   abi: stakingAbi,
@@ -105,15 +105,15 @@ export function Dashboard() {
         }
       }
       
-      if (totalStakedData) {
-        console.log("Total staked data:", totalStakedData);
-        if (typeof totalStakedData === 'bigint') {
-          setTotalStaked(totalStakedData);
-          console.log("Updated total staked:", formatEther(totalStakedData));
-        }
-      }
+      // if (totalStakedData) {
+      //   console.log("Total staked data:", totalStakedData);
+      //   if (typeof totalStakedData === 'bigint') {
+      //     setTotalStaked(totalStakedData);
+      //     console.log("Updated total staked:", formatEther(totalStakedData));
+      //   }
+      // }
     }
-  }, [userInfoData, totalStakedData, isConnected, address]);
+  }, [userInfoData,  isConnected, address]);
 
   // useEffect(() => {
   //   if (isConnected && address && typeof liveRewards === 'bigint') {
@@ -399,16 +399,10 @@ export function Dashboard() {
             
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-gray-700/50 rounded-lg p-4 border border-gray-600">
-                <div className="text-gray-400 text-sm mb-1">Total Staked</div>
-                <div className="text-xl font-bold text-white">{formatCrypto(totalStaked)} ETH</div>
-              </div>
-              
-              <div className="bg-gray-700/50 rounded-lg p-4 border border-gray-600">
                 <div className="text-gray-400 text-sm mb-1">Current Rate</div>
                 <div className="text-xl font-bold text-green-400">
-  1 SANSU / sec per 1 ETH
-</div>
-
+                  1 SANSU / sec per 1 ETH
+                </div>
               </div>
               
               <div className="bg-gray-700/50 rounded-lg p-4 border border-gray-600">
